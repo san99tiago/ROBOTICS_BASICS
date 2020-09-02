@@ -1,0 +1,5 @@
+# Ignore Python unnecesary files
+__pycache__
+
+# Ignore Virtual Environments
+venv
