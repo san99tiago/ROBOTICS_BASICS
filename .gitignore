@@ -6,3 +6,6 @@ venv
 
 # Ignore VScode default parameters
 .vscode
+
+# Ignore temporary autosave MATLAB files
+.asv
