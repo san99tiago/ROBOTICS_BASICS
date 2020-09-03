@@ -17,5 +17,3 @@ disp(TM2);
 
 fprintf("TM2*TM1:\n");
 disp(TM2*TM1);
-
-
