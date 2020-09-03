@@ -9,12 +9,12 @@ addpath(genpath("../"));
 syms theta phi
 
 % Apply first rotation
-TM1 = transformation([0, 0, 1], [0, 0, 0], theta);
+TM1 = transformation([0, 0, 1], [0, 0, 0], theta, 1);
 fprintf("First Transformation (theta degrees in Z axis):\n");
 disp(TM1)
 
 % Apply second rotation
-TM2 = transformation([1, 0, 0], [0, 0, 0], phi);
+TM2 = transformation([1, 0, 0], [0, 0, 0], phi, 1);
 fprintf("Second Transformation (phi degrees in X axis):\n");
 disp(TM2);
 
