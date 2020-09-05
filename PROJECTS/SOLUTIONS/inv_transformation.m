@@ -5,9 +5,9 @@
 % Output analysis:
 % vector_K: vector that is the rotation axis of the matrix. (1 x 3)
 % angle: angle with the rotation of the given axis.
+% P: vector of [Px, Py, Pz] of the position. (1 x 3)
 
-
-function [vector_K, angle] = inv_transformation(TM)
+function [vector_K, angle, P] = inv_transformation(TM)
 % INV_TRANSFORMATION--> Return info from transformation matrix
 
 if nargin < 1
@@ -38,5 +38,7 @@ if angle == 180
     vector_K(3) = TM(3,1)/(2* vector_K(1));   
 else
     constant = 1/(2*sin(angle));
-    vector_K = constant*[TM(3,2) - TM(2,3); TM(1,3) - TM(3,1); TM(2,1) - TM(1,2)];    
+    vector_K = constant*[TM(3,2) - TM(2,3); TM(1,3) - TM(3,1); TM(2,1) - TM(1,2)];
+
+P = TM(1:3,4);
 end
