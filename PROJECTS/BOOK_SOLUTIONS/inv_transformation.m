@@ -17,11 +17,26 @@ if nargin < 1
 end
 
 % Get the angle from the tranformation matrix
-angle = acos((TM(1,1) + TM(2,2) + TM(3,3) - 1)/2);
-
-% Get the vector_K or the rotation of the axis of the rotation matrix
-constant = 1/(2*sin(angle));
-vector_K = constant*[TM(3,2) - TM(2,3); TM(1,3) - TM(3,1); TM(2,1) - TM(1,2)];
-
+% Extreme cases for a 0 degrees, 180 degrees (and normal case)
+N = TM(1,1) + TM(2,2) + TM(3,3);
+if N == 3
+    angle = 0;
+elseif N == -1
+    angle = 180;
+else
+    angle = acos((TM(1,1) + TM(2,2) + TM(3,3) - 1)/2);
 end
 
+
+% Get the vector_K or the rotation of the axis of the rotation matrix
+% We must evaluate two cases (if angle==180) and else.
+if angle == 180
+    fprintf("IF Kx is aproximately zero, then there could be a mistake")
+    fprintf("** \n ** \n ** \n ** \n")
+    vector_K(1) = sqrt((TM(1,1) + 1)/2);
+    vector_K(2) = TM(1,2)/(2* vector_K(1));
+    vector_K(3) = TM(3,1)/(2* vector_K(1));   
+else
+    constant = 1/(2*sin(angle));
+    vector_K = constant*[TM(3,2) - TM(2,3); TM(1,3) - TM(3,1); TM(2,1) - TM(1,2)];    
+end
