@@ -1,62 +1,46 @@
-%ESTA FUNCION PERMITE MODIFICAR UNA FIGURA YA EXISTENTE Y PONERLA LINDA
-%Santiago Garcia Arango, 2020
+% PRETTY_FIGURE: LETS US EDIT CURRENT FIGURE AND MAKE IT "PRETTIER"
+% Santiago Garcia Arango
 %-----------------------------------------------------------------------------------------
-% COMO USAR?
-%Al graficar un comando de graficas como "step()", "bode()", en la linea inmediata...
-%...despues, agregamos esta funcion, para modificarle los atributos importantes a ...
-%...el color, las lineas, los tamannos y que la grafica quede mas bonita (inmediatamente)
-
-%Parametros:
-%nombre_grafica --> Agregar el nombre que queramos que tenga el titulo de la grafica
-%tipo_grafica   --> Agregamos el string asociado a la grafica realizada, por ejemplo:
-%                   "step" , "bode" , "" (segun sea el caso de la grafica)
+% WHAT IS THIS FUNCTION?
+% This is a simple function created by Santiago Garcia, to make a figure...
+% pretty, based on the colors, background, linewidth, title, etc.
+%
+% HOW TO USE?
+% In this case, the way to use it is to have an active figure on a
+% MATLAB script and run the function by calling it (and it works on top of
+% this current figure)
+%
+% PARAMETERS:
+% --> figure_name: name that we want to the title of the current figure
+%
 %-----------------------------------------------------------------------------------------
 
-function [] = GRAFICA_BONITA(nombre_grafica, tipo_grafica )
+function [] = pretty_figure(figure_name)
+    % Add main title to figure
+    title(figure_name);
     
-    %Validamos si usuario ingreso ambos parametros, solo el primero, o ninguno...
-    switch nargin
-        case (0)
-            nombre_grafica = "";
-            tipo_grafica = "";
-        case (1)
-            tipo_grafica = "";
-    end
-
-
-    %Agregamos titulo a la figura (congruente con el parametro de entrada)
-    title(nombre_grafica);
-    %Agregamos el grid para visualizar mejor la curva y sus valores clave
+    % Include grid to have a better view of points and scales
     grid on
-    %Creamos un "current figure handle", para editar opciones deseadas de figura
+    
+    % Save figure in a "Current Figure Handle"
     fig = gcf;
-    %Cambiamos color (en este caso a azul)
+    
+    % Change figure color for the background (in this case a cool blue)
     fig.Color = [0.2 1 1];
-    %Agregamos titulo de la figura
-    fig.Name = nombre_grafica;
-    %Creamos un "current axis handle", para editar opciones deseadas de ejes
+    
+    % We add the same title to the figure
+    fig.Name = figure_name;
+    
+    % Create "Current Axis Handle" to edit axis and its parameters
     ax = gca;
-    %Cambiamos tamanno letra de los ejes 
+    
+    % Change fontsize for both axis
     ax.FontSize = 12;
     
-    %Segun el tipo de figura, cambiamos tamanno linea a "2"
-    if (tipo_grafica=="bode")       
-        %Cambiamos tamanno de grosor de linea por 2
-        set(findall(gcf,'type','line'),'linewidth',2)
-    elseif (tipo_grafica=="step")
-        %Buscamos lineas de curva que posee la figura
-        hline=findobj(fig,'Type','line','Tag','Curves');
-        %Cambiamos grosor de la linea de la figura
-        for line = 1 : length(hline)
-            hline(line).LineWidth = 2;            
-        end
-
-    end
-    
-    %Redimensionamos y relocalizamos figura (cambiar segun tamanno pantalla actual)
+    % Resize and relocate figure (could change based on screen-size)
     set(gcf,'Position',[10 250 700 500])
-    
         
-    %Permitimos espera, por si se desean agregar mas graficas a esta figura
+    % We add the hold on, to be able to plot multiple things
     hold on
+end
     
