@@ -17,12 +17,10 @@ class Transformation:
         # Add extra "1" to vector_AB
         vector_AB.append(1)
         self.vector_AB = np.transpose([vector_AB])
-        print("\nvector_AB:\n", self.vector_AB)
 
         # Add extra "1" to vector_BP
         vector_BP.append(1)
         self.vector_BP = np.transpose([vector_BP])
-        print("\nvector_BP:\n", self.vector_BP)
 
         # Initialize rotation matrices in zero
         self.RX = np.eye(3)
