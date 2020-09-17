@@ -35,10 +35,10 @@ function [] = pretty_figure(figure_name)
     ax = gca;
     
     % Change fontsize for both axis
-    ax.FontSize = 12;
+    ax.FontSize = 10;
     
     % Resize and relocate figure (could change based on screen-size)
-    set(gcf,'Position',[10 250 700 500])
+    set(gcf,'Position',[6 55 900 700])
         
     % We add the hold on, to be able to plot multiple things
     hold on
