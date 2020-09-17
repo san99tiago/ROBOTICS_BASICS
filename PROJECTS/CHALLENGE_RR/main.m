@@ -19,7 +19,7 @@ L2 = 7;
 % Define the amout of points for the vector of point in trajectory
 SPEED_POINTS = 300;
 
-[x, y] = find_trajectory("linear", x_inicial, x_final, y_inicial, ...
+[x, y] = find_trajectory("5th", x_inicial, x_final, y_inicial, ...
                         y_final, SPEED_POINTS);
 
                     
