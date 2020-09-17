@@ -11,6 +11,12 @@ function [] = animate_trajectory(x, y, L1, L2)
     % Start the figure animation
     figure(1)
     
+    % Button to exit if needed
+    EXIT = uicontrol('Style', 'PushButton', ...
+                        'String', 'CLOSE FIGURES', ...
+                        'Callback', 'close all');
+
+    
     % Create a circle for the R.O.I (maximum one)
     r = L1 + L2;
     x_origin =0;
@@ -24,14 +30,20 @@ function [] = animate_trajectory(x, y, L1, L2)
     plot(x,y, "r", "LineWidth", 0.2);
     hold on
 
-    % Button to exit if needed
-    EXIT = uicontrol('Style', 'PushButton', ...
-                        'String', 'CLOSE ALL FIGURES', ...
-                        'Callback', 'close all');
 
     % Get amount of points to be plotted
     POINTS = size(x, 2);
 
+    % Show info of beggining point
+    caption = sprintf('(%.1f, %.1f)', x(1), y(1));
+    text(x(1)-1.7, y(1)-0.5, caption, 'BackgroundColor', 'y');       
+    hold on
+
+    % Show info of final point
+    caption = sprintf('(%.1f, %.1f)', x(POINTS), y(POINTS));
+    text(x(POINTS)+0.3, y(POINTS)+0.5, caption, 'BackgroundColor', 'y');       
+    hold on
+    
     % Main loop to plot the trajectory based on Inverse Kinematics
     for i=1:POINTS
        
