@@ -26,8 +26,8 @@ function [] = animate_trajectory(x, y, L1, L2)
 
     % Button to exit if needed
     EXIT = uicontrol('Style', 'PushButton', ...
-                        'String', 'CLOSE', ...
-                        'Callback', 'delete(gcbf)');
+                        'String', 'CLOSE ALL FIGURES', ...
+                        'Callback', 'close all');
 
     % Get amount of points to be plotted
     POINTS = size(x, 2);
@@ -64,6 +64,7 @@ function [] = animate_trajectory(x, y, L1, L2)
 
         % When the exit button is pressed, lets us break the cycle
         if not(ishandle(EXIT))
+            close all;
             break
         end
     end
