@@ -8,4 +8,4 @@ venv
 .vscode
 
 # Ignore temporary autosave MATLAB files
-.asv
+*.asv
