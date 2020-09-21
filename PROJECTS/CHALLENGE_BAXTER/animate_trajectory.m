@@ -7,7 +7,7 @@
 
 
 
-function [THETAS] = animate_trajectory(POS_1, ANG_1)
+function [] = animate_trajectory(POS_1, ANG_1)
     % Start the figure animation
     figure(1)
     
@@ -21,6 +21,9 @@ function [THETAS] = animate_trajectory(POS_1, ANG_1)
     % Get amount of points to be plotted
     POINTS = size(POS_1, 1);
 
+    plot3(POS_1(:,1), POS_1(:,2), POS_1(:,3));
+    hold on
+    
     % Main loop to plot the trajectory based on Inverse Kinematics
     for i=1:POINTS
         
@@ -28,10 +31,10 @@ function [THETAS] = animate_trajectory(POS_1, ANG_1)
         TM_tool = transformation([0, 0, 0], [POS_1(i,1), POS_1(i,2), POS_1(i,3)], 0);
         TM_tool = TM_tool* transformation([0, 0, 1], [0, 0, 0], ANG_1(i,3));
         TM_tool = TM_tool* transformation([0, 1, 0], [0, 0, 0], ANG_1(i,2));
-        TM_tool = TM_tool* transformation([1, 0, 0], [0, 0, 0], ANG_1(i,1));
+        TM_tool = TM_tool* transformation([1, 0, 0], [0, 0, 0], ANG_1(i,1))
         
         % Calculate Inverse Kinematics given an specfic TM of tool
-        THETAS(i,:) = inverse_kinematics_baxter(TM_tool);
+        THETAS(i,:) = inverse_kinematics_baxter(TM_tool)
         
         
 %         b1 = line(b1_x, b1_y, "LineWidth", 2);

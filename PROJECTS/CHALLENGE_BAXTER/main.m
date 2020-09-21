@@ -39,7 +39,7 @@ end
 
 
                     
-THETA = animate_trajectory(POS_1, ANG_1);
+animate_trajectory(POS_1, ANG_1);
 
 
 % graph_positions(t, POS_1(:,1), POS_1(:,2));

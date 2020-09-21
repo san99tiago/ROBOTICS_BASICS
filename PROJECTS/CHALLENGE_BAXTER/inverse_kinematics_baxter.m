@@ -13,7 +13,6 @@ L1 = 0.069;
 L2 = 0.36435;
 L3 = 0.069;
 L4 = 0.37429;
-L5 = 0.00;
 L6 = 0.36830;
 L = 0.278;
 h = 0.064;
@@ -52,14 +51,15 @@ TM_7_GR = TM_7_GL;
 
 
 % Understanding the corresponding TM from the article, this can be solved:
-TM_0_6 = (TM_W0_BL * TM_BL_0)^(-1) * TM_W0_GL * (TM_7_GL)^(-1);
+TM_0_6 = (TM_W0_BL * TM_BL_0)^(-1) * TM_W0_GL * (TM_7_GL)^(-1)
 
 
 % Find theta1
 PX_0_4 = TM_0_6(1, 4);
 PY_0_4 = TM_0_6(2, 4);
 
-theta1 = atan2(PX_0_4, PY_0_4);
+theta1 = atan2(PY_0_4, PX_0_4)
+
 
 % Find theta2
 PZ_0_4 = TM_0_6(3, 4);
@@ -69,17 +69,34 @@ G = (PX_0_4^2)/((cos(theta1))^2) + L1^2 + LH^2 - L4^2 + PZ_0_4^2 - 2*L1*PX_0_4/c
 
 t1 = (-F + sqrt(E^2 + F^2 - G^2))/(G - E);
 
-theta2 = 2*atan(t1);
+theta2 = 2*atan(t1)
+
 
 % Find theta4
-theta4 = 0;
-
-theta5 = 0;
-theta6 = 0;
-theta7 = 0;
+theta4 = atan2(-PZ_0_4 - LH*sin(theta2), PX_0_4/cos(theta1) - L1 - LH*cos(theta2)) - theta2
 
 
 % Find theta5
+DH_0_3 = [    0,  0,  0,        theta1;
+          -pi/2, L1,  0,        theta2;
+              0, LH,  0, theta4 + pi/2];
+              
+TM_0_3 = denavit_hartenberg(DH_0_3);
+R_0_3 = TM_0_3(1:3, 1:3);
+
+R_0_6 = TM_0_6(1:3, 1:3);
+
+R_3_6 = (R_0_3)^(-1) * R_0_6;
+
+theta5 = atan2(R_3_6(3,3), R_3_6(1,3))
+
+
+% Find theta7
+theta7 = atan2(-R_3_6(2,2), R_3_6(2,1))
+
+
+% Find theta6
+theta6 = atan2(R_3_6(2,1)/cos(theta7), -R_3_6(2,3))
 
 
 THETAS = [theta1, theta2, theta4, theta5, theta6, theta7];
