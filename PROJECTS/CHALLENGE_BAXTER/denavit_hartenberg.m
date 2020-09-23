@@ -4,7 +4,7 @@
 % warning: if symbolic variables, make sure to use "assume(variable,"real")
 % dh_matrix = parameters matrix for Denavit Hartenberg approach. (N x 4)
 
-function [TM, cell_of_TM] = denavit_hartenberg(dh_matrix)
+function [TM, cell_of_TM] = denavit_hartenberg(dh_matrix, show_info)
 %DENAVIT_HARTENBERG: return general  TM from dh parameters
 %Santiago Garcia Arango
 if nargin == 0
@@ -39,22 +39,27 @@ end
 TM = eye(4,4);
 i = 1;
 row = 1;
-while i < size(dh_matrix,1)*4
-    fprintf("\n\n\t\t\t*************** ROW %i ******************\n", row);
-    
+while i < size(dh_matrix,1)*4    
     % Access main matrix and get specific TMs for each DH parameter
     TMi_1 = matrix_of_TM(i:i+3,1:4);
     TMi_2 = matrix_of_TM(i:i+3,5:8);
     TMi_3 = matrix_of_TM(i:i+3,9:12);
     TMi_4 = matrix_of_TM(i:i+3,13:16);
     
-    % Show entire row of Matrix Transformations
-    disp([TMi_1, TMi_2, TMi_3, TMi_4])
-    
+
     % Get the general Transformation Matrix (from each row of DH table)
-    fprintf("TM_%i_%i", (i-1)/4, (i-1)/4+1);
-    TM_current = TMi_1 * TMi_2 * TMi_3 * TMi_4
+
+    TM_current = TMi_1 * TMi_2 * TMi_3 * TMi_4;
     TM = TM * TM_current;
+
+    % Show entire row of Matrix Transformations
+    if show_info == 1
+        fprintf("\n\n\t\t\t*************** ROW %i ******************\n", row);
+        disp([TMi_1, TMi_2, TMi_3, TMi_4])
+        fprintf("TM_%i_%i", (i-1)/4, (i-1)/4+1);
+        disp(TM_current);
+    end    
+    
     
     row = row + 1;
     i = i + 4;
