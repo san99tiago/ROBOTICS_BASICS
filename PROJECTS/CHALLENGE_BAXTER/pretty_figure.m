@@ -1,6 +1,6 @@
 % PRETTY_FIGURE: LETS US EDIT CURRENT FIGURE AND MAKE IT "PRETTIER"
 % Santiago Garcia Arango
-%-----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------
 % WHAT IS THIS FUNCTION?
 % This is a simple function created by Santiago Garcia, to make a figure...
 % pretty, based on the colors, background, linewidth, title, etc.
@@ -13,7 +13,7 @@
 % PARAMETERS:
 % --> figure_name: name that we want to the title of the current figure
 %
-%-----------------------------------------------------------------------------------------
+%-------------------------------------------------------------------------
 
 function [] = pretty_figure(figure_name)
     % Add main title to figure
