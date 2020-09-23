@@ -11,8 +11,8 @@ function [t, var, vel_var, ace_var] = find_trajectory(...
     var_f = var_final;
 
     % Define the intitial conditions for the fifth order trajectory    
-    var_d_o = 0.2;
-    var_d_f = 0.2;
+    var_d_o = 0.01;
+    var_d_f = 0.01;
 
     var_dd_o = 0;
     var_dd_f = 0;
