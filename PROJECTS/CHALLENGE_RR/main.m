@@ -13,8 +13,8 @@ x_final = str2double(x{3});
 y_final = str2double(x{4});
 
 % Measurements of L1 and L2
-L1 = 6;
-L2 = 4;
+L1 = 7;
+L2 = 3;
 
 % Define the amout of points for the vector of point in trajectory
 TIME = 10;
