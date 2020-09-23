@@ -145,6 +145,7 @@ function [] = animate_trajectory(POS_1, ANG_1, POS_2, ANG_2)
         Z_POINTS = [Z_POINTS, P_current(3)];
         
         arm_L = plot3(X_POINTS, Y_POINTS, Z_POINTS, "r","LineWidth", 3);
+        arm_L_joint = scatter3(X_POINTS, Y_POINTS, Z_POINTS, 10, "g");
         pretty_figure("SANTIAGO'S BAXTER");
                 
 
@@ -195,6 +196,7 @@ function [] = animate_trajectory(POS_1, ANG_1, POS_2, ANG_2)
         Z_POINTS = [Z_POINTS, P_current(3)];
         
         arm_R = plot3(X_POINTS, Y_POINTS, Z_POINTS, "r","LineWidth", 3);
+        arm_R_joint = scatter3(X_POINTS, Y_POINTS, Z_POINTS, 10, "g");
         pretty_figure("SANTIAGO'S BAXTER");
         
         
@@ -202,7 +204,7 @@ function [] = animate_trajectory(POS_1, ANG_1, POS_2, ANG_2)
         
         
         xlim([-2, 2]);
-        ylim([-2, 2]);
+        ylim([-1.3, 0.5]);
         zlim([0, 2]);        
         
         
@@ -213,6 +215,8 @@ function [] = animate_trajectory(POS_1, ANG_1, POS_2, ANG_2)
         % Allows us to keep showing robot arm at the last point
         if i ~= POINTS
             delete(arm_L);
+            delete(arm_L_joint);
+            delete(arm_R_joint);
             delete(arm_R);
         end
 

@@ -59,6 +59,3 @@ graph_acelerations(t, DD_POS_1(:,1), DD_POS_1(:,2), DD_POS_1(:,3),...
                     
 graph_acelerations(t, DD_POS_2(:,1), DD_POS_2(:,2), DD_POS_2(:,3),...
                     DD_ANG_2(:,1), DD_ANG_2(:,2), DD_ANG_2(:,3), "right");
-
-
-
