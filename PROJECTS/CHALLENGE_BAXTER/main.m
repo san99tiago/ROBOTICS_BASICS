@@ -1,4 +1,5 @@
 % CHALLENGE: DRAW A ROBOTIC BAXTER ARM FROM POINT A TO POINT B
+% Challenge for robotics class
 % SANTIAGO GARCIA ARANGO
 % ------------------------------------------------------------------------
 
