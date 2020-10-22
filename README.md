@@ -1,6 +1,10 @@
 # MY_ROBOTICS
 Scripts to work with the mathematical approach of robotics.
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/san99tiago/MY_ROBOTICS/master/EXTRAS/robot_repo_gif.gif" width="20%" height="20%"/>
+</p>
+
 # DEPENDENCIES
 
 ## MATLAB
