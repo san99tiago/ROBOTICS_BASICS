@@ -9,3 +9,6 @@ venv
 
 # Ignore temporary autosave MATLAB files
 *.asv
+
+# Ignore simulink cache files
+*slprj
