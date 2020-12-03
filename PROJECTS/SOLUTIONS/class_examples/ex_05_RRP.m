@@ -19,7 +19,7 @@ DH_TABLE = [   0,  0, L1, pi/2 + q1;
                 0, 0,  0,         0]
 
 % Main functions to obtain TM and values for position and rotation
-[TM, cell_of_TM] = denavit_hartenberg(DH_TABLE);
+[TM, cell_of_TM] = denavit_hartenberg(DH_TABLE, 1);
 
 
 % We show the simplified version of final TM, position and rotation
