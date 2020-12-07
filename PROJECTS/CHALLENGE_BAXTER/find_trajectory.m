@@ -11,8 +11,8 @@ function [t, var, vel_var, ace_var] = find_trajectory(...
     var_f = var_final;
 
     % Define the intitial conditions for the fifth order trajectory    
-    var_d_o = 0.01;
-    var_d_f = 0.01;
+    var_d_o = 0;
+    var_d_f = 0;
 
     var_dd_o = 0;
     var_dd_f = 0;
@@ -29,7 +29,7 @@ function [t, var, vel_var, ace_var] = find_trajectory(...
 
 
     % Initialize the vectors for the important variables of the robot
-    t = linspace(0, tf, 250);
+    t = linspace(0, tf, 100);
 
     var = zeros(1, size(t, 2));        
     vel_var = zeros(1, size(t, 2));
