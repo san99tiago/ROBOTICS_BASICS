@@ -1,5 +1,6 @@
+#!/usr/bin/env python
 # INVERSE KINEMATICS FOR BAXTER ROBOT WITH 6 DOF
-# SANTIAGO GARCIA ARANGO & ELKIN JAVIER GUERRA GALEANO
+# SANTIAGO GARCIA AND ELKIN GUERRA
 
 import numpy as np
 import math
@@ -38,7 +39,7 @@ def inverse_kinematics_baxter(TM_W0_Gtool, arm_side):
     # Apply inverse kinematics for the left arm
     if arm_side == "left":
         # Understanding the corresponding TM from the article, this can be solved:
-        TM_0_6 = np.matmul(np.matmul(np.linalg.inv(np.matmul(TM_W0_BL, TM_BL_0)), TM_W0_Gtool), np.linalg.inv((TM_7_GR)))
+        TM_0_6 = np.dot(np.dot(np.linalg.inv(np.dot(TM_W0_BL,TM_BL_0)), TM_W0_Gtool), np.linalg.inv((TM_7_GR)))
 
         # Find theta1
         PX_0_4 = TM_0_6[0, 3]
@@ -52,14 +53,21 @@ def inverse_kinematics_baxter(TM_W0_Gtool, arm_side):
         F = 2*LH*PZ_0_4
         G = (PX_0_4**2)/((math.cos(theta1))**2) + L1**2 + LH**2 - L4**2 + PZ_0_4**2 - 2*L1*PX_0_4/math.cos(theta1)
 
-        # t1 = (-F + math.sqrt(E**2 + F**2 - G**2))/(G - E)
-        # theta2 = 2*math.atan(t1)
 
-        t2 = (-F - math.sqrt(E**2 + F**2 - G**2))/(G - E)
-        theta2 = 2*math.atan(t2)
+        if (E**2 + F**2 - G**2)>0:
+            t1 = (-F + math.sqrt(E**2 + F**2 - G**2))/(G - E)
+        else: 
+            t1 = (-F - 0)/(G - E)
+        theta2 = 2*math.atan(t1)
 
         # We make only use the real part (img is not significant most of the times)
-        theta2 = np.real(theta2)
+        #if (E**2 + F**2 - G**2)>0:
+            #t2 = (-F - math.sqrt(E**2 + F**2 - G**2))/(G - E)
+        #else:
+            #t2 = (-F - 0)/(G - E)
+        #theta2 = 2*math.atan(t2)
+
+
 
         # Find theta4
         theta4 = math.atan2(-PZ_0_4 - LH*math.sin(theta2), PX_0_4/math.cos(theta1) - L1 - LH*math.cos(theta2)) - theta2
@@ -74,7 +82,7 @@ def inverse_kinematics_baxter(TM_W0_Gtool, arm_side):
 
         R_0_6 = TM_0_6[0:3, 0:3]
 
-        R_3_6 = np.matmul(np.linalg.inv(R_0_3), R_0_6)
+        R_3_6 = np.dot(np.linalg.inv(R_0_3), R_0_6)
 
         theta5 = math.atan2(R_3_6[2,2], R_3_6[0,2])
 
