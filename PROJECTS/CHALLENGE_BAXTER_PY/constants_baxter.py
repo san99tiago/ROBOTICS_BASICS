@@ -1,5 +1,6 @@
+#!/usr/bin/env python
 # CONSTANTS FOR THE NECESSARY BAXTER TRANSFORMATIONS
-# SANTIAGO GARCIA ARANGO & ELKIN JAVIER GUERRA GALEANO
+# LAB 5 ROBTICS GROUP 01
 
 import math
 import numpy as np
@@ -20,7 +21,7 @@ class GetConstants:
         self.L2 = 0.36435
         self.L3 = 0.069
         self.L4 = 0.37429
-        self.L5 = 0
+        self.L5 = 0.0
         self.L6 = 0.36830
         self.L = 0.278
         self.h = 0.064
