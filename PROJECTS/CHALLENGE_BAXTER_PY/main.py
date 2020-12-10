@@ -51,14 +51,14 @@ class MainAction:
         SHOW_RESULTS = False
 
         # Define screen pixels for Baxter's image (face LCD screen)
-        h=1024
-        w=600
+        h=600
+        w=1024
 
         # Load image for the Baxter's screen
-        img1 = cv2.imread("MainAction.png")
+        img1 = cv2.imread("Tejada.png")
 
         # Resize the image to get to the maximum possible screen size
-        img1 = cv2.resize(img1,(h,w), interpolation = cv2.INTER_CUBIC)
+        img1 = cv2.resize(img1,(w, h), interpolation = cv2.INTER_CUBIC)
 
         # Create publisher for the Image that will be loaded to Baxter
         pub = rospy.Publisher('/robot/xdisplay', Image, latch=True, queue_size=1)
@@ -148,6 +148,7 @@ class MainAction:
 
             # Apply the desired frecuency for the loop iterations
             self.rate.sleep()
+            rospy.sleep(0.1)
 
             # Show specific commad send in terminal
             rospy.loginfo('{}'.format(self.command))         
